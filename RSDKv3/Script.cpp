@@ -74,6 +74,12 @@ const char variableNames[][0x20] = {
     "CheckResult",
     "ArrayPos0",
     "ArrayPos1",
+    "ArrayPos2",
+    "ArrayPos3",
+    "ArrayPos4",
+    "ArrayPos5",
+    "ArrayPos6",
+    "ArrayPos7",
     "Global",
     "Object.EntityNo",
     "Object.Type",
@@ -103,6 +109,46 @@ const char variableNames[][0x20] = {
     "Object.Value5",
     "Object.Value6",
     "Object.Value7",
+    "Object.Value8",
+    "Object.Value9",
+    "Object.Value10",
+    "Object.Value11",
+    "Object.Value12",
+    "Object.Value13",
+    "Object.Value14",
+    "Object.Value15",
+    "Object.Value16",
+    "Object.Value17",
+    "Object.Value18",
+    "Object.Value19",
+    "Object.Value20",
+    "Object.Value21",
+    "Object.Value22",
+    "Object.Value23",
+    "Object.Value24",
+    "Object.Value25",
+    "Object.Value26",
+    "Object.Value27",
+    "Object.Value28",
+    "Object.Value29",
+    "Object.Value30",
+    "Object.Value31",
+    "Object.Value32",
+    "Object.Value33",
+    "Object.Value34",
+    "Object.Value35",
+    "Object.Value36",
+    "Object.Value37",
+    "Object.Value38",
+    "Object.Value39",
+    "Object.Value40",
+    "Object.Value41",
+    "Object.Value42",
+    "Object.Value43",
+    "Object.Value44",
+    "Object.Value45",
+    "Object.Value46",
+    "Object.Value47",
     "Object.OutOfBounds",
     "Player.State",
     "Player.ControlMode",
@@ -361,6 +407,8 @@ const FunctionInfo functions[] = {
     FunctionInfo("SetScreenFade", 4),
     FunctionInfo("SetActivePalette", 3),
     FunctionInfo("SetPaletteFade", 7),
+    FunctionInfo("SetPaletteEntry", 3),
+    FunctionInfo("GetPaletteEntry", 3),
     FunctionInfo("CopyPalette", 2),
     FunctionInfo("ClearScreen", 1),
     FunctionInfo("DrawSpriteFX", 4),
@@ -428,6 +476,8 @@ const FunctionInfo functions[] = {
     FunctionInfo("DrawText", 7),
     FunctionInfo("GetTextInfo", 5),
     FunctionInfo("GetVersionNumber", 2),
+    FunctionInfo("CheckCurrentStageFolder", 1),
+    FunctionInfo("Abs", 1),
     FunctionInfo("SetAchievement", 2),
     FunctionInfo("SetLeaderboard", 2),
     FunctionInfo("LoadOnlineMenu", 1),
@@ -435,6 +485,8 @@ const FunctionInfo functions[] = {
 #if RETRO_USE_HAPTICS
     FunctionInfo("HapticEffect", 4),
 #endif
+    FunctionInfo("Clamp", 3),
+    FunctionInfo("Print", 3),
 };
 
 #if RETRO_USE_COMPILER
@@ -460,6 +512,7 @@ AliasInfo aliases[ALIAS_COUNT] = { AliasInfo("true", "1"),
                                    AliasInfo("FX_FLIP", "5"),
                                    AliasInfo("FACING_LEFT", "1"),
                                    AliasInfo("FACING_RIGHT", "0"),
+                                   AliasInfo("STAGE_FROZEN", "3"),
                                    AliasInfo("STAGE_PAUSED", "2"),
                                    AliasInfo("STAGE_RUNNING", "1"),
                                    AliasInfo("RESET_GAME", "2"),
@@ -500,6 +553,11 @@ enum ScrVariable {
     VAR_CHECKRESULT,
     VAR_ARRAYPOS0,
     VAR_ARRAYPOS1,
+    VAR_ARRAYPOS3,
+    VAR_ARRAYPOS4,
+    VAR_ARRAYPOS5,
+    VAR_ARRAYPOS6,
+    VAR_ARRAYPOS7,
     VAR_GLOBAL,
     VAR_OBJECTENTITYNO,
     VAR_OBJECTTYPE,
@@ -529,6 +587,46 @@ enum ScrVariable {
     VAR_OBJECTVALUE5,
     VAR_OBJECTVALUE6,
     VAR_OBJECTVALUE7,
+    VAR_OBJECTVALUE8,
+    VAR_OBJECTVALUE9,
+    VAR_OBJECTVALUE10,
+    VAR_OBJECTVALUE11,
+    VAR_OBJECTVALUE12,
+    VAR_OBJECTVALUE13,
+    VAR_OBJECTVALUE14,
+    VAR_OBJECTVALUE15,
+    VAR_OBJECTVALUE16,
+    VAR_OBJECTVALUE17,
+    VAR_OBJECTVALUE18,
+    VAR_OBJECTVALUE19,
+    VAR_OBJECTVALUE20,
+    VAR_OBJECTVALUE21,
+    VAR_OBJECTVALUE22,
+    VAR_OBJECTVALUE23,
+    VAR_OBJECTVALUE24,
+    VAR_OBJECTVALUE25,
+    VAR_OBJECTVALUE26,
+    VAR_OBJECTVALUE27,
+    VAR_OBJECTVALUE28,
+    VAR_OBJECTVALUE29,
+    VAR_OBJECTVALUE30,
+    VAR_OBJECTVALUE31,
+    VAR_OBJECTVALUE32,
+    VAR_OBJECTVALUE33,
+    VAR_OBJECTVALUE34,
+    VAR_OBJECTVALUE35,
+    VAR_OBJECTVALUE36,
+    VAR_OBJECTVALUE37,
+    VAR_OBJECTVALUE38,
+    VAR_OBJECTVALUE39,
+    VAR_OBJECTVALUE40,
+    VAR_OBJECTVALUE41,
+    VAR_OBJECTVALUE42,
+    VAR_OBJECTVALUE43,
+    VAR_OBJECTVALUE44,
+    VAR_OBJECTVALUE45,
+    VAR_OBJECTVALUE46,
+    VAR_OBJECTVALUE47,
     VAR_OBJECTOUTOFBOUNDS,
     VAR_PLAYERSTATE,
     VAR_PLAYERCONTROLMODE,
@@ -787,6 +885,8 @@ enum ScrFunction {
     FUNC_SETSCREENFADE,
     FUNC_SETACTIVEPALETTE,
     FUNC_SETPALETTEFADE,
+    FUNC_SETPALETTEENTRY,
+    FUNC_GETPALETTEENTRY,
     FUNC_COPYPALETTE,
     FUNC_CLEARSCREEN,
     FUNC_DRAWSPRITEFX,
@@ -854,6 +954,8 @@ enum ScrFunction {
     FUNC_DRAWTEXT,
     FUNC_GETTEXTINFO,
     FUNC_GETVERSIONNUMBER,
+    FUNC_CHECKCURRENTSTAGEFOLDER,
+    FUNC_ABS,
     FUNC_SETACHIEVEMENT,
     FUNC_SETLEADERBOARD,
     FUNC_LOADONLINEMENU,
@@ -861,6 +963,8 @@ enum ScrFunction {
 #if RETRO_USE_HAPTICS
     FUNC_HAPTICEFFECT,
 #endif
+    FUNC_CLAMP,
+    FUNC_PRINT,
     FUNC_MAX_CNT
 };
 
@@ -1349,8 +1453,20 @@ void ConvertFunctionText(char *text)
                             constant = 0;
                         if (StrComp(arrayStr, "ArrayPos1"))
                             constant = 1;
-                        if (StrComp(arrayStr, "TempObjectPos"))
+                        if (StrComp(arrayStr, "ArrayPos2"))
                             constant = 2;
+                        if (StrComp(arrayStr, "ArrayPos3"))
+                            constant = 3;
+                        if (StrComp(arrayStr, "ArrayPos4"))
+                            constant = 4;
+                        if (StrComp(arrayStr, "ArrayPos5"))
+                            constant = 5;
+                        if (StrComp(arrayStr, "ArrayPos6"))
+                            constant = 6;
+                        if (StrComp(arrayStr, "ArrayPos7"))
+                            constant = 7;
+                        if (StrComp(arrayStr, "TempObjectPos"))
+                            constant = 8;
 
                         scriptCode[scriptCodePos++] = 1;
                         scriptCode[scriptCodePos++] = constant;
@@ -2235,6 +2351,12 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                     case VAR_CHECKRESULT: scriptEng.operands[i] = scriptEng.checkResult; break;
                     case VAR_ARRAYPOS0: scriptEng.operands[i] = scriptEng.arrayPosition[0]; break;
                     case VAR_ARRAYPOS1: scriptEng.operands[i] = scriptEng.arrayPosition[1]; break;
+                    case VAR_ARRAYPOS2: scriptEng.operands[i] = scriptEng.arrayPosition[2]; break;
+                    case VAR_ARRAYPOS3: scriptEng.operands[i] = scriptEng.arrayPosition[3]; break;
+                    case VAR_ARRAYPOS4: scriptEng.operands[i] = scriptEng.arrayPosition[4]; break;
+                    case VAR_ARRAYPOS5: scriptEng.operands[i] = scriptEng.arrayPosition[5]; break;
+                    case VAR_ARRAYPOS6: scriptEng.operands[i] = scriptEng.arrayPosition[6]; break;
+                    case VAR_ARRAYPOS7: scriptEng.operands[i] = scriptEng.arrayPosition[7]; break;
                     case VAR_GLOBAL: scriptEng.operands[i] = globalVariables[arrayVal]; break;
                     case VAR_OBJECTENTITYNO: scriptEng.operands[i] = arrayVal; break;
                     case VAR_OBJECTTYPE: {
@@ -2343,6 +2465,166 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                     }
                     case VAR_OBJECTVALUE7: {
                         scriptEng.operands[i] = objectEntityList[arrayVal].values[7];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE8: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[8];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE9: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[9];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE10: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[10];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE11: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[11];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE12: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[12];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE13: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[13];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE14: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[14];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE15: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[15];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE16: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[16];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE17: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[17];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE18: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[18];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE19: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[19];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE20: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[20];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE21: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[21];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE22: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[22];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE23: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[23];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE24: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[24];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE25: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[25];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE26: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[26];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE27: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[27];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE28: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[28];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE29: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[29];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE30: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[30];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE31: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[31];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE32: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[32];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE33: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[33];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE34: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[34];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE35: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[35];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE36: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[36];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE37: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[37];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE38: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[38];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE39: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[39];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE40: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[40];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE41: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[41];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE42: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[42];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE43: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[43];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE44: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[44];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE45: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[45];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE46: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[46];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE47: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[47];
                         break;
                     }
                     case VAR_OBJECTOUTOFBOUNDS: {
@@ -3314,6 +3596,8 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                 SetLimitedFade(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3], scriptEng.operands[4],
                                scriptEng.operands[5], scriptEng.operands[6]);
                 break;
+            case FUNC_SETPALETTEENTRY: SetPaletteEntryPacked(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2]); break;
+            case FUNC_GETPALETTEENTRY: scriptEng.operands[2] = GetPaletteEntryPacked(scriptEng.operands[0], scriptEng.operands[1]); break;
             case FUNC_COPYPALETTE:
                 opcodeSize = 0;
                 CopyPalette(scriptEng.operands[0], scriptEng.operands[1]);
@@ -4018,6 +4302,25 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                 AddTextMenuEntry(menu, Engine.gameVersion);
                 break;
             }
+            case FUNC_CHECKCURRENTSTAGEFOLDER:
+                opcodeSize            = 0;
+                scriptEng.checkResult = StrComp(stageList[activeStageList][stageListPosition].folder, scriptText);
+#if RETRO_REV03
+                // Mission Mode stuff
+                if (!scriptEng.checkResult) {
+                    int targetLength  = strlen(stageList[activeStageList][stageListPosition].folder);
+                    int currentLength = strlen(scriptText);
+                    if (targetLength > currentLength) {
+                        scriptEng.checkResult =
+                            StrComp(&stageList[activeStageList][stageListPosition].folder[targetLength - currentLength], scriptText);
+                    }
+                }
+#endif
+                break;
+            case FUNC_ABS: {
+                scriptEng.operands[0] = abs(scriptEng.operands[0]);
+                break;
+            }
             case FUNC_SETACHIEVEMENT:
                 opcodeSize = 0;
                 SetAchievement(scriptEng.operands[0], scriptEng.operands[1]);
@@ -4048,6 +4351,27 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                     PlayHaptics(scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3]);
                 break;
 #endif
+            case FUNC_CLAMP:
+                opcodeSize = 0;
+                Clamp(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2]);
+                break;
+            case FUNC_PRINT: {
+                // FUNCTION PARAMS:
+                // scriptEng.operands[0] = message (can be a regular value or a string depending on scriptEng.operands[1])
+                // scriptEng.operands[1] = isInt
+                // scriptEng.operands[2] = useEndLine
+
+                endLine = false;
+                if (scriptEng.operands[1])
+                    PrintLog("%d", scriptEng.operands[0]);
+                else
+                    PrintLog("%s", scriptText);
+
+                if (scriptEng.operands[2])
+                    PrintLog("\n");
+                endLine = true;
+                break;
+            }
         }
 
         // Set Values
@@ -4094,6 +4418,12 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                     case VAR_CHECKRESULT: scriptEng.checkResult = scriptEng.operands[i]; break;
                     case VAR_ARRAYPOS0: scriptEng.arrayPosition[0] = scriptEng.operands[i]; break;
                     case VAR_ARRAYPOS1: scriptEng.arrayPosition[1] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS2: scriptEng.arrayPosition[2] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS3: scriptEng.arrayPosition[3] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS4: scriptEng.arrayPosition[4] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS5: scriptEng.arrayPosition[5] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS6: scriptEng.arrayPosition[6] = scriptEng.operands[i]; break;
+                    case VAR_ARRAYPOS7: scriptEng.arrayPosition[7] = scriptEng.operands[i]; break;
                     case VAR_GLOBAL: globalVariables[arrayVal] = scriptEng.operands[i]; break;
                     case VAR_OBJECTENTITYNO: break;
                     case VAR_OBJECTTYPE: {
@@ -4202,6 +4532,166 @@ void ProcessScript(int scriptCodeStart, int jumpTableStart, byte scriptSub)
                     }
                     case VAR_OBJECTVALUE7: {
                         objectEntityList[arrayVal].values[7] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE8: {
+                        objectEntityList[arrayVal].values[8] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE9: {
+                        objectEntityList[arrayVal].values[9] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE10: {
+                        objectEntityList[arrayVal].values[10] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE11: {
+                        objectEntityList[arrayVal].values[11] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE12: {
+                        objectEntityList[arrayVal].values[12] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE13: {
+                        objectEntityList[arrayVal].values[13] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE14: {
+                        objectEntityList[arrayVal].values[14] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE15: {
+                        objectEntityList[arrayVal].values[15] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE16: {
+                        objectEntityList[arrayVal].values[16] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE17: {
+                        objectEntityList[arrayVal].values[17] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE18: {
+                        objectEntityList[arrayVal].values[18] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE19: {
+                        objectEntityList[arrayVal].values[19] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE20: {
+                        objectEntityList[arrayVal].values[20] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE21: {
+                        objectEntityList[arrayVal].values[21] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE22: {
+                        objectEntityList[arrayVal].values[22] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE23: {
+                        objectEntityList[arrayVal].values[23] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE24: {
+                        objectEntityList[arrayVal].values[24] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE25: {
+                        objectEntityList[arrayVal].values[25] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE26: {
+                        objectEntityList[arrayVal].values[26] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE27: {
+                        objectEntityList[arrayVal].values[27] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE28: {
+                        objectEntityList[arrayVal].values[28] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE29: {
+                        objectEntityList[arrayVal].values[29] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE30: {
+                        objectEntityList[arrayVal].values[30] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE31: {
+                        objectEntityList[arrayVal].values[31] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE32: {
+                        objectEntityList[arrayVal].values[32] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE33: {
+                        objectEntityList[arrayVal].values[33] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE34: {
+                        objectEntityList[arrayVal].values[34] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE35: {
+                        objectEntityList[arrayVal].values[35] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE36: {
+                        objectEntityList[arrayVal].values[36] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE37: {
+                        objectEntityList[arrayVal].values[37] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE38: {
+                        objectEntityList[arrayVal].values[38] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE39: {
+                        objectEntityList[arrayVal].values[39] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE40: {
+                        objectEntityList[arrayVal].values[40] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE41: {
+                        objectEntityList[arrayVal].values[41] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE42: {
+                        objectEntityList[arrayVal].values[42] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE43: {
+                        objectEntityList[arrayVal].values[43] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE44: {
+                        objectEntityList[arrayVal].values[44] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE45: {
+                        objectEntityList[arrayVal].values[45] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE46: {
+                        objectEntityList[arrayVal].values[46] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE47: {
+                        objectEntityList[arrayVal].values[47] = scriptEng.operands[i];
                         break;
                     }
                     case VAR_OBJECTOUTOFBOUNDS: break;

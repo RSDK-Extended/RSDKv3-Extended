@@ -59,4 +59,15 @@ inline int Cos256(int angle)
 // Get Arc Tan value
 byte ArcTanLookup(int X, int Y);
 
+// Clamp
+inline int Clamp(int value, int minimum, int maximum)
+{
+    if (value < minimum)
+        value = minimum;
+    else if (value > maximum)
+        value = maximum;
+    else
+        value = value;
+}
+
 #endif // !MATH_H

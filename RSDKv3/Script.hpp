@@ -37,9 +37,9 @@ struct ObjectScript {
 };
 
 struct ScriptEngine {
-    int operands[10];
+    int operands[0x10];
     int tempValue[8];
-    int arrayPosition[3];
+    int arrayPosition[9];
     int checkResult;
 };
 
